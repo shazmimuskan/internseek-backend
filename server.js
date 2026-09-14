@@ -41,7 +41,8 @@ app.post("/add", async (req, res) => {
   try {
     const data = await Application.create(req.body);
     res.json(data);
-  } catch (error) {
+   } catch (error) {
+    console.error("ADD APPLICATION ERROR:", error);
     res.status(500).json({ message: error.message });
   }
 });
