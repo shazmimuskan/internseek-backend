@@ -28,8 +28,10 @@ const groq = new Groq({
 
 /* -------------------- MONGODB CONNECT -------------------- */
 mongoose.connect(process.env.MONGO_URI)
-.then(() => console.log("MongoDB Connected"))
-.catch((err) => console.log(err));
+  .then(() => console.log("✅ MONGODB CONNECTED SUCCESSFULLY"))
+  .catch((err) => {
+    console.error("❌ MONGODB CONNECTION FAILED:", err.message);
+  });
 
 /* -------------------- HOME ROUTE -------------------- */
 app.get("/", (req, res) => {
