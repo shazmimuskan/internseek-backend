@@ -16,10 +16,6 @@ const Application = require("./models/Application");
 
 app.use(cors());
 app.use(express.json());
-app.use((req, res, next) => {
-  console.log("REQUEST:", req.method, req.url, req.body);
-  next();
-});
 
 /* -------------------- GROQ SETUP -------------------- */
 const groq = new Groq({
@@ -43,10 +39,9 @@ app.post("/add", async (req, res) => {
   try {
     const data = await Application.create(req.body);
     res.json(data);
-   } catch (error) {
-    console.error("ADD APPLICATION ERROR:", error);
-    res.status(500).json({ message: error.message });
-  }
+} catch (error) {
+  res.status(500).json({ message: error.message });
+}
 });
 
 app.get("/applications", async (req, res) => {
